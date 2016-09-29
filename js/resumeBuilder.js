@@ -64,7 +64,7 @@ var formattedSchoolName = HTMLschoolName.replace("%data%", education.schoolName)
 // add bio info
 $("#header").prepend(formattedRole);
 $("#header").prepend(formattedName);
-$("#header").prepend(formattedBioPic);
+$("#header").append(formattedBioPic);
 $("#topContacts").append(formattedEmail);
 $("#topContacts").append(formattedGithub);
 $("#topContacts").append(formattedMobile);
