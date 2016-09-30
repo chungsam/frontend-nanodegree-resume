@@ -3,41 +3,41 @@ This is empty on purpose! Your code to build the resume will go here.
  */
 
 var bio = {
-	name: "Sam Chung",
-	role: "Front-End Developer",
-	contacts: {
-		mobile: "604-442-3006",
-		email: "chungsam@outlook.com",
-		github: "chungsam",
-		location: "Vancouver, BC"	
-},
-	bioPic: "images/197x148.gif",
-	welcomeMsg: "Hi! Feel free to look around!",
-	skills: [
-		"HTML5",
-		"CSS3",
-		"JavaScript",
-		"Angular",
-		"Python"
-],
+    name: "Sam Chung",
+    role: "Front-End Developer",
+    contacts: {
+        mobile: "604-442-3006",
+        email: "chungsam@outlook.com",
+        github: "chungsam",
+        location: "Vancouver, BC"
+    },
+    bioPic: "images/197x148.gif",
+    welcomeMsg: "Hi! Feel free to look around!",
+    skills: [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "Angular",
+        "Python"
+    ],
 };
 
 var work = {
-	title: "Financial Analyst",
-	employerName: "IT|IQ Tech Recruiters",
-	dates: {
-		startDate: "March 2015",
-		endDate: "Current"
-},
-	location: "Vancouver, BC"	
+    title: "Financial Analyst",
+    employerName: "IT|IQ Tech Recruiters",
+    dates: {
+        startDate: "March 2015",
+        endDate: "Current"
+    },
+    location: "Vancouver, BC"
 };
 
 var education = {
-	schoolName: "British Columbia Institute of Technology",
-	schoolDegree: "Bachelor of Technology",
-	schoolDates: "September 2012-June 2016",
-	schoolLocation: "Burnaby, BC",
-	schoolMajor: "Accounting"
+    schoolName: "British Columbia Institute of Technology",
+    schoolDegree: "Bachelor of Technology",
+    schoolDates: "September 2012-June 2016",
+    schoolLocation: "Burnaby, BC",
+    schoolMajor: "Accounting"
 };
 
 // format bio info
@@ -55,7 +55,6 @@ var formattedWorkTitle = HTMLworkTitle.replace("%data%", work.title);
 var formattedWorkEmployer = HTMLworkEmployer.replace("%data%", work.employerName);
 var formattedWorkStartDate = HTMLworkDates.replace("%data%", work.dates.startDate);
 var formattedWorkEndDate = HTMLworkDates.replace("%data%", work.dates.endDate);
-
 var formattedWorkCity = HTMLworkLocation.replace("%data%", work.location);
 
 // format school info
