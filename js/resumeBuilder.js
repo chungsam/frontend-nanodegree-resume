@@ -3,17 +3,17 @@ This is empty on purpose! Your code to build the resume will go here.
  */
 
 var bio = {
-    name: "Sam Chung",
-    role: "Front-End Developer",
-    contacts: {
-        mobile: "604-442-3006",
-        email: "chungsam@outlook.com",
-        github: "chungsam",
-        location: "Vancouver, BC"
+    "name": "Sam Chung",
+    "role": "Front-End Developer",
+    "contacts": {
+        "mobile": "604-442-3006",
+        "email": "chungsam@outlook.com",
+        "github": "chungsam",
+        "location": "Vancouver, BC"
     },
-    bioPic: "images/197x148.gif",
-    welcomeMsg: "Hi! Feel free to look around!",
-    skills: [
+    "bioPic": "images/197x148.gif",
+    "welcomeMsg": "Hi! Feel free to look around!",
+    "skills": [
         "HTML5",
         "CSS3",
         "JavaScript",
@@ -23,42 +23,57 @@ var bio = {
 };
 
 var work = {
-    title: "Financial Analyst",
-    employerName: "IT|IQ Tech Recruiters",
-    dates: {
-        startDate: "March 2015",
-        endDate: "Current"
-    },
-    location: "Vancouver, BC"
+
+    jobs: [{
+        "title": "Financial Analyst",
+        "employer": "IT|IQ Tech Recruiters",
+        "dates": "May 2014 - Present",
+        "location": "Vancouver, BC",
+        "description": "Gained extensive experience in creating data models using Microsoft PowerPivot and advanced Excel skills including custom VBA coding. Also created a consultant payroll tracking system with Microsoft Access to track payments and to import timesheet and ATS data via CSVs."
+    }]
 };
 
 var education = {
-    schoolName: "British Columbia Institute of Technology",
-    schoolDegree: "Bachelor of Technology",
-    schoolDates: "September 2012-June 2016",
-    schoolLocation: "Burnaby, BC",
-    schoolMajor: "Accounting"
+    "schools": [{
+        "name": "british columbia institute of technology",
+        "degree": "bachelor of technology",
+        "dates": "September 2012-June 2016",
+        "location": "Burnaby, BC",
+        "major": ["Accounting"]
+    }],
+    "onlineCourses": [{
+
+    }]
 };
 
+var projects = {
+    "projects": [{
+        "title": "Sample Project 1",
+        "dates": "2014",
+        "description": "I created something cool with some cool technologies.",
+        "images": ["#"]
+
+    }]
+};
+
+
 // format bio info
-var formattedName = HTMLheaderName.replace("%data%", bio.name);
-var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
-var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
-var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
-var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
-var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
-var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMsg);
-
-// format work info
-var formattedWorkTitle = HTMLworkTitle.replace("%data%", work.title);
-var formattedWorkEmployer = HTMLworkEmployer.replace("%data%", work.employerName);
-var formattedWorkStartDate = HTMLworkDates.replace("%data%", work.dates.startDate);
-var formattedWorkEndDate = HTMLworkDates.replace("%data%", work.dates.endDate);
-var formattedWorkCity = HTMLworkLocation.replace("%data%", work.location);
-
-// format school info
-var formattedSchoolName = HTMLschoolName.replace("%data%", education.schoolName);
+var formattedName = HTMLheaderName
+    .replace("%data%", bio.name);
+var formattedRole = HTMLheaderRole
+    .replace("%data%", bio.role);
+var formattedMobile = HTMLmobile
+    .replace("%data%", bio.contacts.mobile);
+var formattedEmail = HTMLemail
+    .replace("%data%", bio.contacts.email);
+var formattedGithub = HTMLgithub
+    .replace("%data%", bio.contacts.github);
+var formattedLocation = HTMLlocation
+    .replace("%data%", bio.contacts.location);
+var formattedBioPic = HTMLbioPic
+    .replace("%data%", bio.bioPic);
+var formattedWelcomeMsg = HTMLwelcomeMsg
+    .replace("%data%", bio.welcomeMsg);
 
 // add bio info
 $("#header").prepend(formattedRole);
@@ -69,10 +84,29 @@ $("#topContacts").append(formattedGithub);
 $("#topContacts").append(formattedMobile);
 $("#topContacts").append(formattedLocation);
 
-// add work info
-$("#workExperience").append(HTMLworkStart);
-$(".work-entry").append(formattedWorkEmployer + formattedWorkTitle);
+// add skills
+if (bio.skills.length > 0) {
+    $("#header").append(HTMLskillsStart);
+    for (i = 0; i < bio.skills.length; i++) {
+        formattedSkill = HTMLskills.replace("%data%", bio.skills[i]);
+        $("#skills").append(formattedSkill);
+    }
+}
 
-// add education info
-$("#education").append(HTMLschoolStart);
-$(".education-entry").append(formattedSchoolName);
+// add work info
+
+if (work.jobs.length > 0) {
+    for (var job in work.jobs) {
+        $("#workExperience").append(HTMLworkStart);
+        var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+        var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+        var formattedEmployerTitle = formattedEmployer + formattedTitle;
+	var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
+	var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+	var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+        $(".work-entry:last").append(formattedEmployerTitle);
+	$(".work-entry:last").append(formattedLocation);
+	$(".work-entry:last").append(formattedDates);
+	$(".work-entry:last").append(formattedDescription);
+    }
+}
