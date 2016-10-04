@@ -47,13 +47,41 @@ var education = {
 };
 
 var projects = {
+
     "projects": [{
         "title": "Sample Project 1",
         "dates": "2014",
         "description": "I created something cool with some cool technologies.",
         "images": ["#"]
-
     }]
+};
+
+projects.display = function() {
+    if (projects.projects.length > 0) {
+        for (i = 0; i < projects.projects.length; i++) {
+            $("#projects").append(HTMLprojectStart);
+
+            var formattedTitle = HTMLprojectTitle.replace(
+                "%data%", projects.projects[i].title);
+            var formattedDates = HTMLprojectDates.replace(
+                "%data%", projects.projects[i].dates);
+            var formattedDescription = HTMLprojectDescription.replace(
+                "%data%", projects.projects[i].description);
+
+            $(".project-entry").append(formattedTitle);
+            $(".project-entry").append(formattedDates);
+            $(".project-entry").append(formattedDescription);
+
+            if (projects.projects[i].images.length > 0) {
+                for (j = 0; j < projects.projects[i].images.length; j++) {
+                    var formattedImage = HTMLprojectImage.replace(
+                        "%data%", projects.projects[i].images[j]);
+                    $(".project-entry:last").append(formattedImage);
+                }
+            }
+        }
+    }
+
 };
 
 
@@ -112,6 +140,7 @@ function displayWork() {
     }
 }
 
+// display functions
 displayWork();
+projects.display();
 
-// add projects
