@@ -25,12 +25,29 @@ var bio = {
 var work = {
 
     jobs: [{
-        "title": "Financial Analyst",
-        "employer": "IT|IQ Tech Recruiters",
-        "dates": "May 2014 - Present",
-        "location": "Vancouver, BC",
-        "description": "Gained extensive experience in creating data models using Microsoft PowerPivot and advanced Excel skills including custom VBA coding. Also created a consultant payroll tracking system with Microsoft Access to track payments and to import timesheet and ATS data via CSVs."
-    }]
+            "title": "Financial Analyst",
+            "employer": "IT|IQ Tech Recruiters",
+            "dates": "May 2014 - Present",
+            "location": "Vancouver, BC",
+            "description": "Gained extensive experience in creating data models using Microsoft PowerPivot and advanced Excel skills including custom VBA coding. Also created a consultant payroll tracking system with Microsoft Access to track payments and to import timesheet and ATS data via CSVs."
+        }],
+        display: function() {
+            if (work.jobs.length > 0) {
+                for (var job in work.jobs) {
+                    $("#workExperience").append(HTMLworkStart);
+                    var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+                    var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+                    var formattedEmployerTitle = formattedEmployer + formattedTitle;
+                    var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
+                    var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+                    var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+                    $(".work-entry:last").append(formattedEmployerTitle);
+                    $(".work-entry:last").append(formattedLocation);
+                    $(".work-entry:last").append(formattedDates);
+                    $(".work-entry:last").append(formattedDescription);
+                }
+            }
+        }
 };
 
 var education = {
@@ -123,24 +140,9 @@ if (bio.skills.length > 0) {
 
 // add work info
 function displayWork() {
-    if (work.jobs.length > 0) {
-        for (var job in work.jobs) {
-            $("#workExperience").append(HTMLworkStart);
-            var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-            var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
-            var formattedEmployerTitle = formattedEmployer + formattedTitle;
-            var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
-            var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
-            var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
-            $(".work-entry:last").append(formattedEmployerTitle);
-            $(".work-entry:last").append(formattedLocation);
-            $(".work-entry:last").append(formattedDates);
-            $(".work-entry:last").append(formattedDescription);
-        }
-    }
+
 }
 
 // display functions
-displayWork();
+work.display();
 projects.display();
-
