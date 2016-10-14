@@ -1,26 +1,27 @@
 function addGoogleMap() {
+    $("#mapDiv").append(googleMap);
 
 }
 
 
 var bio = {
-    "name": "Sam Chung",
-    "role": "Front-End Developer",
-    "contacts": {
-        "mobile": "604-442-3006",
-        "email": "chungsam@outlook.com",
-        "github": "chungsam",
-        "location": "Vancouver, BC"
+    name: "Sam Chung",
+    role: "Front-End Developer",
+    contacts: {
+        mobile: "604-442-3006",
+        email: "chungsam@outlook.com",
+        github: "chungsam",
+        location: "Vancouver, BC"
     },
-    "bioPic": "images/197x148.gif",
-    "welcomeMsg": "Hi! Feel free to look around!",
-    "skills": [
+    welcomeMsg: "Hi! Feel free to look around!",
+    skills: [
         "HTML5",
         "CSS3",
         "JavaScript",
         "Angular",
         "Python"
     ],
+    "bioPic": "images/197x148.gif",
     display: function() {
         // format bio info
         var formattedName = HTMLheaderName
@@ -61,53 +62,19 @@ var bio = {
     }
 };
 
-var work = {
-    jobs: [{
-        "title": "Financial Analyst",
-        "employer": "IT|IQ Tech Recruiters",
-        "dates": "May 2014 - Present",
-        "location": "Vancouver, BC",
-        "description": "Did some cool stuff."
-    }],
-    display: function() {
-        if (this.jobs.length > 0) {
-            for (var job in work.jobs) {
-                $("#workExperience").append(HTMLworkStart);
-                var formattedEmployer = HTMLworkEmployer
-                    .replace("%data%", this.jobs[job].employer);
-                var formattedTitle = HTMLworkTitle
-                    .replace("%data%", this.jobs[job].title);
-                var formattedEmployerTitle = formattedEmployer + formattedTitle;
-                var formattedLocation = HTMLworkLocation
-                    .replace("%data%", this.jobs[job].location);
-                var formattedDates = HTMLworkDates
-                    .replace(
-                        "%data%", this.jobs[job].dates);
-                var formattedDescription = HTMLworkDescription
-                    .replace(
-                        "%data%", this.jobs[job].description);
-                $(".work-entry:last").append(formattedEmployerTitle);
-                $(".work-entry:last").append(formattedLocation);
-                $(".work-entry:last").append(formattedDates);
-                $(".work-entry:last").append(formattedDescription);
-            }
-        }
-    }
-};
-
 var education = {
     schools: [{
-        "name": "British Columbia Institute of Technology",
-        "degree": "Bachelor of Technology",
-        "dates": "September 2012-June 2016",
-        "location": "Burnaby, BC",
-        "major": ["Accounting"]
+        name: "British Columbia Institute of Technology",
+        degree: "Bachelor of Technology",
+        dates: "September 2012-June 2016",
+        location: "Burnaby, BC",
+        major: ["Accounting"]
     }],
     onlineCourses: [{
-        "title": "Online Course",
-        "school": "Online School",
-        "dates": "Date-Date",
-        "url": "Url"
+        title: "Online Course",
+        school: "Online School",
+        dates: "Date-Date",
+        url: "Url"
     }],
     display: function() {
 
@@ -167,13 +134,49 @@ var education = {
     }
 };
 
+var work = {
+    jobs: [{
+        title: "Financial Analyst",
+        employer: "IT|IQ Tech Recruiters",
+        dates: "May 2014 - Present",
+        location: "Vancouver, BC",
+        description: "Did some cool stuff."
+    }],
+    display: function() {
+        if (this.jobs.length > 0) {
+            for (var job in work.jobs) {
+                $("#workExperience").append(HTMLworkStart);
+                var formattedEmployer = HTMLworkEmployer
+                    .replace("%data%", this.jobs[job].employer);
+                var formattedTitle = HTMLworkTitle
+                    .replace("%data%", this.jobs[job].title);
+                var formattedEmployerTitle = formattedEmployer + formattedTitle;
+                var formattedLocation = HTMLworkLocation
+                    .replace("%data%", this.jobs[job].location);
+                var formattedDates = HTMLworkDates
+                    .replace(
+                        "%data%", this.jobs[job].dates);
+                var formattedDescription = HTMLworkDescription
+                    .replace(
+                        "%data%", this.jobs[job].description);
+                $(".work-entry:last").append(formattedEmployerTitle);
+                $(".work-entry:last").append(formattedLocation);
+                $(".work-entry:last").append(formattedDates);
+                $(".work-entry:last").append(formattedDescription);
+            }
+        }
+    }
+};
+
+
+
 var projects = {
 
     projects: [{
-        "title": "Sample Project 1",
-        "dates": "2014",
-        "description": "I created something cool with some cool technologies.",
-        "images": ["#"]
+        title: "Sample Project 1",
+        dates: "2014",
+        description: "I created something cool with some cool technologies.",
+        images: ["#"]
     }],
     display: function() {
         if (this.projects.length > 0) {
@@ -215,3 +218,4 @@ bio.display();
 work.display();
 projects.display();
 education.display();
+addGoogleMap();
