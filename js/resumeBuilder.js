@@ -44,6 +44,7 @@ var bio = {
         $("#header").prepend(formattedRole);
         $("#header").prepend(formattedName);
         $("#header").append(formattedBioPic);
+        $("#header").append(formattedWelcomeMsg);
         $("#topContacts").append(formattedEmail);
         $("#topContacts").append(formattedGithub);
         $("#topContacts").append(formattedMobile);
