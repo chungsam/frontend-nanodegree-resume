@@ -1,7 +1,7 @@
 var addGoogleMap = function() {
     $("#mapDiv").append(googleMap);
 
-}
+};
 
 var bio = {
     name: "Sam Chung",
