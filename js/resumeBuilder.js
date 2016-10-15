@@ -1,8 +1,7 @@
-function addGoogleMap() {
+var addGoogleMap = function() {
     $("#mapDiv").append(googleMap);
 
 }
-
 
 var bio = {
     name: "Sam Chung",
@@ -21,7 +20,7 @@ var bio = {
         "Angular",
         "Python"
     ],
-    "bioPic": "images/197x148.gif",
+    "bioPic": "images/fry.jpg",
     display: function() {
         // format bio info
         var formattedName = HTMLheaderName
@@ -41,7 +40,7 @@ var bio = {
         var formattedWelcomeMsg = HTMLwelcomeMsg
             .replace("%data%", bio.welcomeMsg);
 
-        // add bio info
+        // add bio info to header
         $("#header").prepend(formattedRole);
         $("#header").prepend(formattedName);
         $("#header").append(formattedBioPic);
@@ -59,6 +58,12 @@ var bio = {
                 $("#skills").append(formattedSkill);
             }
         }
+
+        // add contact info to footer
+        $("#footerContacts").append(formattedEmail);
+        $("#footerContacts").append(formattedGithub);
+        $("#footerContacts").append(formattedMobile);
+        $("#footerContacts").append(formattedLocation);
     }
 };
 
@@ -66,14 +71,14 @@ var education = {
     schools: [{
         name: "British Columbia Institute of Technology",
         degree: "Bachelor of Technology",
-        dates: "September 2012-June 2016",
+        dates: "September 2012 - June 2016",
         location: "Burnaby, BC",
         major: ["Accounting"]
     }],
     onlineCourses: [{
         title: "Online Course",
         school: "Online School",
-        dates: "Date-Date",
+        dates: "Month Year - Month Year",
         url: "Url"
     }],
     display: function() {
@@ -140,7 +145,13 @@ var work = {
         employer: "IT|IQ Tech Recruiters",
         dates: "May 2014 - Present",
         location: "Vancouver, BC",
-        description: "Did some cool stuff."
+        description: "Did some cool stuff with some cool technologies and learned a lot!"
+    }, {
+        title: "Title 2",
+        employer: "Employer 2",
+        dates: "Month Year - Month Year",
+        location: "Vancouver, BC",
+        description: "Did some cool stuff with some cool technologies and learned a lot!"
     }],
     display: function() {
         if (this.jobs.length > 0) {
@@ -176,7 +187,7 @@ var projects = {
         title: "Sample Project 1",
         dates: "2014",
         description: "I created something cool with some cool technologies.",
-        images: ["#"]
+        images: ["images/197x148.gif", "images/197x148.gif", "images/197x148.gif"]
     }],
     display: function() {
         if (this.projects.length > 0) {
