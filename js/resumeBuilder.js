@@ -12,7 +12,7 @@ var bio = {
         github: "chungsam",
         location: "Vancouver, BC"
     },
-    welcomemsg: "Hi! Feel free to look around!",
+    welcomeMessage: "Hi! Feel free to look around!",
     skills: [
         "HTML5",
         "CSS3",
@@ -21,7 +21,9 @@ var bio = {
         "Python"
     ],
     biopic: "images/fry.jpg",
-    display: function() {
+};
+
+bio.display = function() {
         // format bio info
         var formattedName = HTMLheaderName
             .replace("%data%", bio.name);
@@ -38,7 +40,7 @@ var bio = {
         var formattedBioPic = HTMLbioPic
             .replace("%data%", bio.biopic);
         var formattedWelcomeMsg = HTMLwelcomeMsg
-            .replace("%data%", bio.welcomemsg);
+            .replace("%data%", bio.welcomeMessage);
 
         // add bio info to header
         $("#header").prepend(formattedName, formattedRole);
@@ -57,8 +59,7 @@ var bio = {
 
         // add contact info to footer
         $("#footerContacts").append(formattedEmail, formattedGithub, formattedMobile, formattedLocation);
-    }
-};
+    };
 
 var education = {
     schools: [{
@@ -75,7 +76,9 @@ var education = {
         dates: "Month Year - Month Year",
         url: "http://www.udacity.com"
     }],
-    display: function() {
+};
+
+education.display = function() {
 
         function addMajor(element) {
             var formattedMajor = HTMLschoolMajor.replace(
@@ -100,7 +103,9 @@ var education = {
         }
 
         if (this.schools.length > 0) {
-            for (i = 0; i < this.schools.length; i++) {
+            var countSchools = this.schools.length;
+
+            for (i = 0; i < countSchools; i++) {
                 $('#education').append(HTMLschoolStart);
 
                 var formattedName = HTMLschoolName
@@ -121,15 +126,12 @@ var education = {
         }
 
         if (this.onlineCourses.length > 0) {
+
             $('#education').append(HTMLonlineClasses);
 
             this.onlineCourses.forEach(addOnlineCourse);
-
-
-
         }
     }
-};
 
 var work = {
     jobs: [{
@@ -184,7 +186,9 @@ var projects = {
     }],
     display: function() {
         if (this.projects.length > 0) {
-            for (i = 0; i < this.projects.length; i++) {
+            var countProjects = this.projects.length;
+
+            for (i = 0; i < countProjects; i++) {
                 $("#projects").append(HTMLprojectStart);
 
                 var formattedTitle = HTMLprojectTitle
@@ -199,7 +203,9 @@ var projects = {
                 $(".project-entry").append(formattedDescription);
 
                 if (this.projects[i].images.length > 0) {
-                    for (j = 0; j < this.projects[i].images.length; j++) {
+                    var countImages = this.projects[i].images.length;
+
+                    for (j = 0; j < countImages; j++) {
                         var formattedImage = HTMLprojectImage
                             .replace("%data%", this.projects[i].images[j]);
                         $(".project-entry:last").append(formattedImage);
