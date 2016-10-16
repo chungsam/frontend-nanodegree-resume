@@ -12,7 +12,7 @@ var bio = {
         github: "chungsam",
         location: "Vancouver, BC"
     },
-    welcomeMsg: "Hi! Feel free to look around!",
+    welcomemsg: "Hi! Feel free to look around!",
     skills: [
         "HTML5",
         "CSS3",
@@ -20,7 +20,7 @@ var bio = {
         "Angular",
         "Python"
     ],
-    "bioPic": "images/fry.jpg",
+    biopic: "images/fry.jpg",
     display: function() {
         // format bio info
         var formattedName = HTMLheaderName
@@ -36,19 +36,14 @@ var bio = {
         var formattedLocation = HTMLlocation
             .replace("%data%", bio.contacts.location);
         var formattedBioPic = HTMLbioPic
-            .replace("%data%", bio.bioPic);
+            .replace("%data%", bio.biopic);
         var formattedWelcomeMsg = HTMLwelcomeMsg
-            .replace("%data%", bio.welcomeMsg);
+            .replace("%data%", bio.welcomemsg);
 
         // add bio info to header
-        $("#header").prepend(formattedRole);
-        $("#header").prepend(formattedName);
-        $("#header").append(formattedBioPic);
-        $("#header").append(formattedWelcomeMsg);
-        $("#topContacts").append(formattedEmail);
-        $("#topContacts").append(formattedGithub);
-        $("#topContacts").append(formattedMobile);
-        $("#topContacts").append(formattedLocation);
+        $("#header").prepend(formattedName, formattedRole);
+        $("#header").append(formattedBioPic, formattedWelcomeMsg);
+        $("#topContacts").append(formattedEmail, formattedGithub, formattedMobile, formattedLocation);
 
         // add skills
         if (bio.skills.length > 0) {
@@ -61,10 +56,7 @@ var bio = {
         }
 
         // add contact info to footer
-        $("#footerContacts").append(formattedEmail);
-        $("#footerContacts").append(formattedGithub);
-        $("#footerContacts").append(formattedMobile);
-        $("#footerContacts").append(formattedLocation);
+        $("#footerContacts").append(formattedEmail, formattedGithub, formattedMobile, formattedLocation);
     }
 };
 
@@ -74,13 +66,14 @@ var education = {
         degree: "Bachelor of Technology",
         dates: "September 2012 - June 2016",
         location: "Burnaby, BC",
-        major: ["Accounting"]
+        major: ["Accounting"],
+        url: "http://www.bcit.ca"
     }],
     onlineCourses: [{
         title: "Online Course",
         school: "Online School",
         dates: "Month Year - Month Year",
-        url: "Url"
+        url: "http://www.udacity.com"
     }],
     display: function() {
 
@@ -94,7 +87,8 @@ var education = {
 
         function addOnlineCourse(element) {
             var formattedTitle = HTMLonlineTitle
-                .replace('%data%', element.title);
+                .replace('%data%', element.title)
+                .replace('#', element.url);
             var formattedSchool = HTMLonlineSchool
                 .replace('%data%', element.school);
             var formattedDates = HTMLonlineDates
@@ -102,9 +96,7 @@ var education = {
             var formattedURL = HTMLonlineURL
                 .replace('%data%', element.url);
 
-            $('#education h3').append(formattedTitle + formattedSchool);
-            $('#education h3').append(formattedDates);
-            $('#education h3').append(formattedURL);
+            $('#education h3').append(formattedTitle + formattedSchool, formattedDates, formattedURL);
         }
 
         if (this.schools.length > 0) {
@@ -112,7 +104,8 @@ var education = {
                 $('#education').append(HTMLschoolStart);
 
                 var formattedName = HTMLschoolName
-                    .replace("%data%", this.schools[i].name);
+                    .replace("%data%", this.schools[i].name)
+                    .replace("#", this.schools[i].url);
                 var formattedDegree = HTMLschoolDegree
                     .replace("%data%", this.schools[i].degree);
                 var formattedDates = HTMLschoolDates
@@ -120,9 +113,7 @@ var education = {
                 var formattedLocation = HTMLschoolLocation
                     .replace("%data%", this.schools[i].location);
 
-                $('.education-entry').append(formattedName + formattedDegree);
-                $('.education-entry').append(formattedDates);
-                $('.education-entry').append(formattedLocation);
+                $('.education-entry').append(formattedName + formattedDegree, formattedDates, formattedLocation);
 
                 this.schools[i].major.forEach(addMajor);
 
@@ -156,26 +147,27 @@ var work = {
     }],
     display: function() {
         if (this.jobs.length > 0) {
-            for (var job in work.jobs) {
+
+            this.jobs.forEach(function(job) {
                 $("#workExperience").append(HTMLworkStart);
                 var formattedEmployer = HTMLworkEmployer
-                    .replace("%data%", this.jobs[job].employer);
+                    .replace("%data%", job.employer);
                 var formattedTitle = HTMLworkTitle
-                    .replace("%data%", this.jobs[job].title);
+                    .replace("%data%", job.title);
                 var formattedEmployerTitle = formattedEmployer + formattedTitle;
                 var formattedLocation = HTMLworkLocation
-                    .replace("%data%", this.jobs[job].location);
+                    .replace("%data%", job.location);
                 var formattedDates = HTMLworkDates
                     .replace(
-                        "%data%", this.jobs[job].dates);
+                        "%data%", job.dates);
                 var formattedDescription = HTMLworkDescription
                     .replace(
-                        "%data%", this.jobs[job].description);
+                        "%data%", job.description);
                 $(".work-entry:last").append(formattedEmployerTitle);
                 $(".work-entry:last").append(formattedLocation);
                 $(".work-entry:last").append(formattedDates);
                 $(".work-entry:last").append(formattedDescription);
-            }
+            });
         }
     }
 };
