@@ -67,7 +67,7 @@ var education = {
         degree: "Bachelor of Technology",
         dates: "September 2012 - June 2016",
         location: "Burnaby, BC",
-        major: ["Accounting"],
+        majors: ["Accounting"],
         url: "http://www.bcit.ca"
     }],
     onlineCourses: [{
@@ -120,7 +120,7 @@ education.display = function() {
 
                 $('.education-entry').append(formattedName + formattedDegree, formattedDates, formattedLocation);
 
-                this.schools[i].major.forEach(addMajor);
+                this.schools[i].majors.forEach(addMajor);
 
             }
         }
